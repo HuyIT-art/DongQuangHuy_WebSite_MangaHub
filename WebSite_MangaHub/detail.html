@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Truyện - Solo Leveling</title>
+
+    <!-- Bootstrap + FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS hiện có -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/manga-detail.css">
+
+    <!-- CSS danh sách chương -->
+    <link rel="stylesheet" href="css/chapter-list.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <a href="index.html" class="logo">Manga<span style="color:#fff;">Hub</span></a>
+    <div class="search-box">
+        <input type="text" placeholder="Tìm kiếm...">
+        <i class="fas fa-search"></i>
+    </div>
+</header>
+
+<div class="container" style="margin-top:100px; margin-bottom:50px;">
+    <div class="manga-detail">
+
+        <!-- CỘT TRÁI -->
+        <div class="left-column">
+
+            <!-- THÔNG TIN TRUYỆN -->
+            <div class="manga-info">
+                <img src="images/solo-leveling.jpg" class="manga-cover">
+
+                <div class="manga-stats">
+                    <h1 class="manga-title">Solo Leveling - Tôi Thăng Cấp Một Mình</h1>
+
+                    <!--TTRANG CHỦ + NÚT ĐỌC + YÊU THÍCH -->
+                    <div class="mt-3 d-flex gap-2 flex-wrap">
+
+                        <!-- VỀ TRANG CHỦ -->
+                        <a href="index.html" class="btn btn-outline-secondary rounded-pill px-4">
+                            <i class="fas fa-home"></i> Trang Chủ
+                        </a>
+
+                        <!-- ĐỌC TỪ ĐẦU -->
+                        <a href="read.html?chapter=1" class="btn btn-primary rounded-pill px-4">
+                            <i class="fas fa-book-open"></i> Đọc Từ Đầu
+                        </a>
+
+                        <!-- YÊU THÍCH -->
+                        <button id="favoriteBtn" class="btn btn-outline-danger rounded-pill px-4">
+                            <i class="far fa-heart"></i> Yêu Thích
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- MÔ TẢ -->
+            <div class="description mt-4">
+                <h3><i class="fas fa-info-circle text-primary"></i> Nội Dung</h3>
+                <p>
+                    10 năm trước, sau khi cánh cổng mở ra, Sung Jin Woo – thợ săn yếu nhất nhân loại – bắt đầu hành trình thăng cấp một mình...
+                </p>
+            </div>
+
+            <!-- DANH SÁCH CHƯƠNG -->
+            <div class="chapter-list mt-4">
+                <h3 class="mb-3">
+                    <i class="fas fa-list text-primary"></i> Danh Sách Chương
+                </h3>
+
+                <div id="chapterList"></div>
+            </div>
+
+        </div>
+
+        <!-- CỘT PHẢI -->
+        <div class="right-column">
+            <h3>Truyện Đề Cử</h3>
+            <p>One Piece</p>
+            <p>Naruto</p>
+        </div>
+
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2023 MangaHub</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SCRIPT DANH SÁCH CHƯƠNG -->
+<script>
+    const totalChapters = 4; // chỉnh số chương tại đây
+    const chapterList = document.getElementById("chapterList");
+
+    for (let i = totalChapters; i >= 1; i--) {
+        const div = document.createElement("div");
+        div.className = "chapter-item";
+
+        div.innerHTML = `
+            <a href="read.html?chapter=${i}" class="chapter-link">
+                Chương ${i}
+            </a>
+            <span class="chapter-time">Cập nhật</span>
+        `;
+
+        chapterList.appendChild(div);
+    }
+</script>
+
+<!-- SCRIPT YÊU THÍCH -->
+<script>
+    const manga = {
+        id: "solo-leveling",
+        title: "Solo Leveling - Tôi Thăng Cấp Một Mình",
+        cover: "images/solo-leveling.jpg",
+        link: "detail.html"
+    };
+
+    const favoriteBtn = document.getElementById("favoriteBtn");
+
+    function getFavorites() {
+        return JSON.parse(localStorage.getItem("favorites")) || [];
+    }
+
+    function saveFavorites(favorites) {
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+
+    function isFavorite() {
+        return getFavorites().some(item => item.id === manga.id);
+    }
+
+    function updateFavoriteBtn() {
+        if (isFavorite()) {
+            favoriteBtn.innerHTML = '<i class="fas fa-heart"></i> Đã Yêu Thích';
+            favoriteBtn.classList.remove("btn-outline-danger");
+            favoriteBtn.classList.add("btn-danger");
+        } else {
+            favoriteBtn.innerHTML = '<i class="far fa-heart"></i> Yêu Thích';
+            favoriteBtn.classList.add("btn-outline-danger");
+            favoriteBtn.classList.remove("btn-danger");
+        }
+    }
+
+    favoriteBtn.onclick = function () {
+        let favorites = getFavorites();
+
+        if (isFavorite()) {
+            favorites = favorites.filter(item => item.id !== manga.id);
+        } else {
+            favorites.push(manga);
+        }
+
+        saveFavorites(favorites);
+        updateFavoriteBtn();
+    };
+
+    updateFavoriteBtn();
+</script>
+
+</body>
+</html>

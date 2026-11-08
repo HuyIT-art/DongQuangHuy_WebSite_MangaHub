@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thể Loại - MangaHub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/manga-card.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">Manga<span style="color: #fff;">Hub</span></a>
+        <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm truyện...">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="user-actions d-none d-md-flex">
+            <a href="login.html">Đăng Nhập</a>
+            <a href="register.html">Đăng Ký</a> 
+        </div>
+        <button class="hamburger-btn d-md-none"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <!-- Menu Ngang (Copy y hệt từ bước 2) -->
+    <nav class="main-nav d-none d-md-block">
+        <div class="container">
+            <ul class="nav-list">
+                
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Thể Loại <i class="fas fa-caret-down"></i></a>
+                    <div class="mega-menu">
+                        <a href="detail-categories.html?category=Action">Action</a>
+                        <a href="detail-categories.html?category=Adventure">Adventure</a>
+                        <a href="detail-categories.html?category=Anime">Anime</a>
+                        <a href="detail-categories.html?category=Chuyển Sinh">Chuyển Sinh</a>
+                        <a href="detail-categories.html?category=Cổ Đại">Cổ Đại</a>
+                        <a href="detail-categories.html?category=Comedy">Comedy</a>
+                        <a href="detail-categories.html?category=Comic">Comic</a>
+                        <a href="detail-categories.html?category=Demons">Demons</a>
+                        <a href="detail-categories.html?category=Detective">Detective</a>
+                        <a href="detail-categories.html?category=Doujinshi">Doujinshi</a>
+                        <a href="detail-categories.html?category=Drama">Drama</a>
+                        <a href="detail-categories.html?category=Fantasy">Fantasy</a>
+                        <a href="detail-categories.html?category=Gender Bender">Gender Bender</a>
+                        <a href="detail-categories.html?category=Harem">Harem</a>
+                        <a href="detail-categories.html?category=Historical">Historical</a>
+                        <a href="detail-categories.html?category=Horror">Horror</a>
+                        <a href="detail-categories.html?category=Huyền Huyễn">Huyền Huyễn</a>
+                        <a href="detail-categories.html?category=Isekai">Isekai</a>
+                        <a href="detail-categories.html?category=Josei">Josei</a>
+                        <a href="detail-categories.html?category=Mafia">Mafia</a>
+                        <a href="detail-categories.html?category=Magic">Magic</a>
+                        <a href="detail-categories.html?category=Manga">Manga</a>
+                        <a href="detail-categories.html?category=Manhua">Manhua</a>
+                        <a href="detail-categories.html?category=Manhwa">Manhwa</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link">Xếp Hạng</a></li>
+                <li class="nav-item"><a href="history.html" class="nav-link">Lịch Sử</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Theo Dõi</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Nội dung chính -->
+    <div class="container">
+        
+        <!-- Breadcrumb (Đường dẫn) -->
+        <nav aria-label="breadcrumb" class="mt-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Trang Chủ</a></li>
+                <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Thể Loại</a></li>
+                <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-category">...</li>
+            </ol>
+        </nav>
+
+        <!-- Tiêu đề Thể Loại Động -->
+        <div class="section-wrapper mt-3">
+            <div class="section-title">
+                <i class="fas fa-tags"></i> Truyện Thể Loại: <span id="category-title" class="text-primary ms-2">Đang tải...</span>
+            </div>
+            
+            <div class="alert alert-info">
+                Danh sách truyện thuộc thể loại <strong><span id="category-subtitle">...</span></strong> được sắp xếp theo thời gian cập nhật mới nhất.
+            </div>
+
+            <!-- Bộ lọc nhỏ -->
+            <div class="d-flex justify-content-end mb-3">
+                <div class="btn-group">
+                    <button class="btn btn-outline-secondary btn-sm active">Mới cập nhật</button>
+                    <button class="btn btn-outline-secondary btn-sm">Xem nhiều</button>
+                    <button class="btn btn-outline-secondary btn-sm">Đánh giá cao</button>
+                </div>
+            </div>
+
+            <!-- Lưới truyện (Giống trang chủ) -->
+            <div class="manga-grid">
+                <!-- Item 1 -->
+                <div class="manga-card">
+                    <div style="position: relative;">
+                        <span class="badge-18plus">Hot</span>
+                        <a href="detail.html">
+                            <img src="images\vo-luyen-dinh-phong.jpeg" class="manga-cover" alt="Cover">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="manga-title"><a href="detail.html">Võ Luyện Đỉnh Phong</a></h3>
+                        <div class="chapter-info">
+                            <span>Chương 3600</span>
+                            <span class="update-tag">Vừa xong</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="manga-card">
+                    <a href="detail.html">
+                        <img src="images\toan-chuc-phap-su.jpg" class="manga-cover" alt="Cover">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="manga-title"><a href="detail.html">Toàn Chức Pháp Sư</a></h3>
+                        <div class="chapter-info">
+                            <span>Chương 500</span>
+                            <span class="update-tag">1 giờ trước</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="manga-card">
+                    <a href="detail.html">
+                        <img src="images\nguyen-ton.webp" class="manga-cover" alt="Cover">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="manga-title"><a href="detail.html">Nguyên Tôn</a></h3>
+                        <div class="chapter-info">
+                            <span>Chương 800</span>
+                            <span class="update-tag">Hôm qua</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Item 4 -->
+                 <div class="manga-card">
+                    <a href="detail.html">
+                        <img src="images\dau-la-dai-luc.webp" class="manga-cover" alt="Cover">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="manga-title"><a href="detail.html">Đấu La Đại Lục</a></h3>
+                        <div class="chapter-info">
+                            <span>Chương 200</span>
+                            <span class="update-tag">2 ngày trước</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="manga-card">
+                    <a href="detail.html">
+                        <!-- <img src="images\naruto.jpg" class="manga-cover" alt="Cover"> -->
+                    </a>
+                    <div class="card-body">
+                        <h3 class="manga-title"><a href="detail.html">Naruto</a></h3>
+                        <div class="chapter-info">
+                            <span>Chương 220</span>
+                            <!-- <span class="update-tag">Vừa xong</span> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="manga-card">
+                    <a href="detail.html">
+                        <img src="images\shark-ca-map.jpg" class="manga-cover" alt="Cover">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="manga-title"><a href="detail.html">Người xấu</a></h3>
+                        <div class="chapter-info">
+                            <span>Chương 283</span>
+                            <span class="update-tag">Vừa xong</span>
+                        </div>
+                    </div>
+                </div>
+                
+                                <div class="manga-card">
+                    <a href="detail.html">
+                        <img src="images\Jujutsu-kaisen.jpg" class="manga-cover" alt="Cover">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="manga-title"><a href="detail.html">Jujusu Kaisen</a></h3>
+                        <div class="chapter-info">
+                            <span>Chương 150</span>
+                            <span class="update-tag">3 ngày trước</span>
+                        </div>
+                    </div>
+                </div>
+
+                                <div class="manga-card">
+                    <a href="detail.html">
+                        <img src="images\tho-san-cap-sss.jpg" class="manga-cover" alt="Cover">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="manga-title"><a href="detail.html">Thợ săn</a></h3>
+                        <div class="chapter-info">
+                            <span>Chương 190</span>
+                            <span class="update-tag">1 ngày trước</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bạn có thể copy thêm nhiều item vào đây -->
+            </div>
+            
+            <!-- Phân trang -->
+            <ul class="pagination mt-4">
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MangaHub.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SCRIPT XỬ LÝ TÊN THỂ LOẠI TỰ ĐỘNG -->
+    <script src="js/main.js"></script>
+    <script src="js/category.js"></script>
+</body>
+</html>
